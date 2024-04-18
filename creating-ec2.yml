@@ -1,0 +1,21 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+  
+    - name: Provisioning EC2 instances
+      block:
+
+      - name: Provision instance(s)
+        ec2:
+          key_name: "{{ Ohio-key }}"
+          group_id: "{{ sg-004eab485840a7b47  }}"
+          image: "{{ ami-09b90e09742640522 }}"
+          instance_type: "{{ t2.micro }}"
+          region: "{{ us-east-2 }}"
+          vpc_subnet_id: "{{ subnet_0c7a0cb352fe50468 }}"
+          instance_profile_name: "{{ iam_role }}"
+          assign_public_ip: yes
+          wait: true
+          count: 1

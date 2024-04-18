@@ -11,8 +11,8 @@
       image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ ami_type }}', region='us-east-1') }}"
       instance_type: "{{ instance_type }}"
       region: "us-east-1"
-      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region='us-east-1') }}"
-      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region='us-east-1') }}"
+      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region='us-east-2') }}"
+      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region='us-east-2') }}"
       wait: true
       volumes:
         - device_name: /dev/xvda
@@ -23,11 +23,11 @@
             encrypted: true
       name: "{{ instance_name }}"
       tags:
-        created_by: "{{ created_by }}"
-        Owner: "{{ Owner }}"
-        App_Name: "{{ App_Name }}"
-        Cost_Center: "{{ Cost_Center }}"
-        Business_Unit: "{{ Business_Unit }}"
+#        created_by: "{{ created_by }}"
+#        Owner: "{{ Owner }}"
+#        App_Name: "{{ App_Name }}"
+#        Cost_Center: "{{ Cost_Center }}"
+#        Business_Unit: "{{ Business_Unit }}"
       user_data: |
         #!/bin/bash
         yum update -y
